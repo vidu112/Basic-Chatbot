@@ -78,7 +78,7 @@ export default function ChatBox() {
         {/* Input */}
         <div className="flex mt-4">
           <input
-            className="flex-grow p-2 border rounded-l-lg"
+            className="flex-grow p-2 border rounded-l-lg text-black"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && sendMessage()}

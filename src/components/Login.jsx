@@ -32,7 +32,7 @@ export default function Login() {
               onChange={(e) => setUsername(e.target.value)}
               required
               placeholder="your username"
-              className="w-full px-4 py-2 rounded-lg bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 rounded-lg bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
             />
           </div>
           <div>
@@ -43,7 +43,7 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
               required
               placeholder="••••••••"
-              className="w-full px-4 py-2 rounded-lg bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 rounded-lg bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
             />
           </div>
           <button
