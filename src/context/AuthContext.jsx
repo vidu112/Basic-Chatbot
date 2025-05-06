@@ -10,7 +10,7 @@ export function AuthProvider({ children }) {
 
   // On mount: try to refresh access token
   useEffect(() => {
-    
+    refresh();  
     api.post('/auth/refresh-token')
       .then(res => {
         console.log('🔄 Refreshed Access Token:', res.data.accessToken);
@@ -24,6 +24,12 @@ export function AuthProvider({ children }) {
         setLoading(false);
       });
   }, []);
+
+  const refresh = () =>
+    api.post("/auth/refresh-token")
+      .then(res => setToken(res.data.accessToken))
+      .catch(() => setToken(null))
+      .finally(() => setLoading(false));
 
   const login = async (username, password) => {
     const res = await api.post('/auth/login', { username, password });
@@ -44,7 +50,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ token, login, signup, logout, loading }}>
+    <AuthContext.Provider value={{ token, login, signup, logout, refresh, loading }}>
       {children}
     </AuthContext.Provider>
   );

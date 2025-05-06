@@ -16,7 +16,7 @@ export default function Signup() {
     e.preventDefault();
     try {
       await signup(username, email, firstName, lastName, password);
-      navigate("/chat");
+      navigate("/verify-pending");
     } catch (err) {
       console.error("Signup error:", err);
       alert("Sign up failed. Username or email may already be taken.");
