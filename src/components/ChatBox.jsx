@@ -1,4 +1,3 @@
-// src/components/ChatBox.jsx
 import { useState, useContext, useEffect, useRef } from "react";
 import { api } from "../api";
 import { AuthContext } from "../context/AuthContext";
@@ -9,28 +8,45 @@ export default function ChatBox() {
   const [input, setInput]       = useState("");
   const bottomRef               = useRef(null);
 
-  // auto-scroll to bottom when new messages arrive
+  // 1) Load this user’s history on mount
+  useEffect(() => {
+    async function fetchHistory() {
+      try {
+        const res = await api.get("/chat", {
+          headers: { Authorization: `Bearer ${token}` },
+          params: { sessionId: "default" }
+        });
+        const msgs = res.data.messages.map(msg => ({
+          sender: msg.role === "user" ? "user" : "bot",
+          text: msg.content
+        }));
+        setMessages(msgs);
+      } catch (err) {
+        console.error("Failed to load chat history:", err);
+      }
+    }
+    fetchHistory();
+  }, [token]);
+
+  // 2) Auto-scroll when messages update
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  // 3) Sending a new message
   const sendMessage = async () => {
     if (!input.trim()) return;
 
-    // show user message immediately
-    const userMessage = { sender: "user", text: input };
-    setMessages((prev) => [...prev, userMessage]);
+    // Show user message immediately
+    setMessages(prev => [...prev, { sender: "user", text: input }]);
 
     try {
-      // call protected chat endpoint with access token
       const { data } = await api.post(
         "/chat",
         { message: input, sessionId: "default" },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-
-      const botMessage = { sender: "bot", text: data.reply };
-      setMessages((prev) => [...prev, botMessage]);
+      setMessages(prev => [...prev, { sender: "bot", text: data.reply }]);
     } catch (err) {
       console.error("Chat error:", err);
       alert("Failed to send message. Please try again.");

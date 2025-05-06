@@ -31,15 +31,16 @@ export function AuthProvider({ children }) {
     setToken(res.data.accessToken);
   };
 
-  const signup = async (username, password) => {
-    await api.post('/auth/signup', { username, password });
+  const signup = async (username, email, firstName, lastName, password) => {
+    await api.post('/auth/signup', {
+      username, email, firstName, lastName, password
+    });
     // immediately log in after signup
     return login(username, password);
   };
 
   const logout = async () => {
-    await api.post('/auth/logout');
-    setToken(null);
+    await api.post('/auth/logout').finally(() => setToken(null));
   };
 
   return (

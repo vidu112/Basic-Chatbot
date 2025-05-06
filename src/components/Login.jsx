@@ -21,7 +21,7 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-tr from-blue-800 to-zinc-900 p-4">
-      <div className="bg-zinc-800 text-white rounded-2xl shadow-lg p-8 max-w-md w-full">
+      <div className="bg-gray text-white  shadow-lg p-8 max-w-md w-full">
         <h2 className="text-3xl font-semibold text-center mb-6">Welcome Back</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -31,7 +31,7 @@ export default function Login() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
-              placeholder="your username"
+              placeholder="User Name"
               className="w-full px-4 py-2 rounded-lg bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
             />
           </div>
