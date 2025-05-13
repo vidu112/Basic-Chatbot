@@ -6,6 +6,7 @@ export default {
   ],
   theme: {
     extend: {colors: {
+      'slate-850': '#172033',
       blue: "#2997FF",
       gray: {
         DEFAULT: "#86868b",
