@@ -1,6 +1,9 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const api = axios.create({
-  baseURL: '/api',
-  withCredentials: true,    // send HttpOnly refresh cookie
+  baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:3000/api",
+  withCredentials: true,       // so cookies (refresh-token) are sent
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
