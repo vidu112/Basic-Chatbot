@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      /* now you can import from "context/…" instead of relative */
+      "context/*": ["context/*"],
+      "api":        ["api.js"],
+      "components/*": ["components/*"],
+      /* or catch-all: */
+      "@/*": ["*"]
+    }
+  },
+  "include": ["src"]
+}
