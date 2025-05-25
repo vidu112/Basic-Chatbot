@@ -13,7 +13,6 @@ import VerifyPending from "./components/VerifyPending";
 import TaskForm from "./components/Tasks/TaskForm.jsx";
 import Header from "./components/Header";
 import TasksList from "./components/Tasks/TasksList.jsx";
-import TaskEdit from "./components/Tasks/TaskEdit.jsx";
 
 function ProtectedLayout() {
   const { token } = useContext(AuthContext);
@@ -56,7 +55,6 @@ export default function App() {
           />
           <Route path="/tasks/new" element={<TaskForm />} />
           <Route path="/tasks" element={<TasksList />} />
-          <Route path="/tasks/:id/edit" element={<TaskEdit />} />
         </Route>
 
         {/* 4) 404 for anything else */}
