@@ -1,6 +1,14 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-blue: #2997ff;
+  --color-gray: #86868b;
+  --color-gray-100: #94928d;
+  --color-gray-200: #afafaf;
+  --color-gray-300: #42424570;
+  --color-zinc: #101010;
+  --color-slate-850: #172033;
+}
 
 * {
   margin: 0;
@@ -66,7 +74,7 @@ canvas {
   }
 
   .feature-text-container {
-    @apply w-full flex-center flex-col md:flex-row mt-10 md:mt-16 gap-5
+    @apply w-full flex items-center justify-center flex-col md:flex-row mt-10 md:mt-16 gap-5
   }
 
   .feature-video {
@@ -82,7 +90,7 @@ canvas {
   }
 
   .control-btn {
-    @apply ml-4 p-4 rounded-full bg-gray-300 backdrop-blur flex-center
+    @apply ml-4 p-4 rounded-full bg-gray-300 backdrop-blur flex items-center justify-center
   }
 
   .hero-title {
